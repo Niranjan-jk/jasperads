@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jasperfilmz | Brand Showcase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --text: #e0e0e0;
+      --accent: #8a2be2;
+      --brand-hover: rgba(138, 43, 226, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: linear-gradient(to bottom right, #080808, #121212);
+      text-align: center;
+      padding: 0 20px;
+    }
+    header h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      max-width: 800px;
+      line-height: 1.3;
+    }
+
+    .brand-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      padding: 60px 40px;
+    }
+
+    .brand-tile {
+      background: #111;
+      border: 1px solid var(--brand-hover);
+      border-radius: 16px;
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .brand-tile:hover {
+      background: var(--brand-hover);
+      transform: scale(1.03);
+      color: var(--accent);
+      box-shadow: 0 0 30px rgba(138, 43, 226, 0.4);
+    }
+
+    .brand-showcase {
+      display: none;
+      padding: 60px 40px;
+      background: #121212;
+      animation: fadeIn 0.5s ease forwards;
+    }
+    .brand-showcase.active {
+      display: block;
+    }
+    .brand-showcase h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+    .videos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 16 / 9;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      font-weight: 600;
+      color: var(--text);
+      background: transparent;
+      border: 2px solid var(--accent);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .back-btn:hover {
+      background: var(--accent);
+      color: #000;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Jasperfilmz has worked with top-tier brands, delivering cinematic edits that demand attention.</h1>
+  </header>
+
+  <section class="brand-grid" id="brandGrid">
+    <div class="brand-tile" onclick="showBrand('reviewboost')">Review Boost</div>
+    <div class="brand-tile" onclick="showBrand('curlwave')">Curlwave</div>
+    <div class="brand-tile" onclick="showBrand('dryp')">Dryp</div>
+    <div class="brand-tile" onclick="showBrand('biohack')">Biohack Yourself</div>
+    <div class="brand-tile" onclick="showBrand('traversy')">Traversy Media</div>
+    <div class="brand-tile" onclick="showBrand('isaac')">Isaac Harris-Holt</div>
+    <div class="brand-tile" onclick="showBrand('taoclean')">Tao Clean</div>
+    <div class="brand-tile" onclick="showBrand('vitauthority')">Vitauthority</div>
+    <div class="brand-tile" onclick="showBrand('switchresearch')">Switch Research</div>
+    <div class="brand-tile" onclick="showBrand('ethicalpap')">Ethical PAP</div>
+    <div class="brand-tile" onclick="showBrand('courtroom')">Courtroom Consequences</div>
+    <div class="brand-tile" onclick="showBrand('roblox')">The Roblox Coach</div>
+    <div class="brand-tile" onclick="showBrand('mason')">Mason</div>
+    <div class="brand-tile" onclick="showBrand('eplay')">Eplay Studios</div>
+    <div class="brand-tile" onclick="showBrand('webprodigies')">Web Prodigies</div>
+    <div class="brand-tile" onclick="showBrand('hustletok')">HustleTok</div>
+  </section>
+
+  <section id="showcaseContainer"></section>
+
+  <footer>© Jasperfilmz. All rights reserved.</footer>
+
+  <script>
+    const brandData = {
+      reviewboost: [
+        'https://www.youtube.com/embed/teBgygTicwA',
+        'https://www.youtube.com/embed/Yvrxyxymmb4'
+      ],
+      curlwave: [
+        'https://drive.google.com/file/d/13fWuNqO8ED07yka1oBt4iFdaiCRs_m1t/preview'
+      ],
+      dryp: [
+        'https://drive.google.com/file/d/1L0jF9O0lW05EoR5iciMnSoLAA2C6bDq6/preview',
+        'https://drive.google.com/file/d/1qIa4AvGsEnOxhoFAk9pQoJRsoeEBfnEr/preview'
+      ],
+      biohack: [
+        'https://drive.google.com/file/d/1s2JTpiPtljtBIS6eBTe01_Cc7iNMBU6D/preview',
+        'https://drive.google.com/file/d/1N-GjZ35axHygqx0t3SM9AhsVnvkuxDWp/preview'
+      ],
+      traversy: [
+        'https://drive.google.com/file/d/16zZN1s8cashn-9EOn6qwjAlpgV0ItZzm/preview',
+        'https://drive.google.com/file/d/1Md-VrOG7WRyD5DWQNjjaVxk4slszksmC/preview'
+      ],
+      isaac: [
+        'https://drive.google.com/file/d/1PWkz04Dvrq_SXJbIWwg8n2-pISV0orHW/preview'
+      ],
+      taoclean: [
+        'https://embed.f.io/Rs1VWrxJ',
+        'https://embed.f.io/z2VTTO94'
+      ],
+      vitauthority: [
+        'https://embed.f.io/k10NFc6h'
+      ],
+      switchresearch: [
+        'https://embed.f.io/lGP25E00'
+      ],
+      ethicalpap: [
+        'https://www.youtube.com/embed/gZIrwkE3cks',
+        'https://www.youtube.com/embed/gMQYCFOoZOk'
+      ],
+      courtroom: [
+        'https://drive.google.com/file/d/1hu-Q3QhCy38YRDP-q3HbRXQLyji5bBHz/preview'
+      ],
+      roblox: [
+        'https://drive.google.com/file/d/1NVnJiuUTgjF2OaBPp7VXNPElsg9U89m9/preview'
+      ],
+      mason: [
+        'https://drive.google.com/file/d/1eDLUMOax5Cevb40quKTu_M2tDVJ_oUlj/preview',
+        'https://drive.google.com/file/d/1WJn3vSwJArfG3HjiDln3TIA8BRDF2U4E/preview'
+      ],
+      eplay: [
+        'https://www.youtube.com/embed/wdc9zlovHwM',
+        'https://www.youtube.com/embed/yNVutab2tXQ'
+      ],
+      webprodigies: [
+        'https://www.youtube.com/embed/XkOXNlHJP6M',
+        'https://www.youtube.com/embed/3R63m4sTpKo'
+      ],
+      hustletok: [
+        'https://www.youtube.com/embed/fZJJmE2LLnc'
+      ]
+    };
+
+    function showBrand(id) {
+      const showcaseContainer = document.getElementById('showcaseContainer');
+      showcaseContainer.innerHTML = '';
+      const newSection = document.createElement('section');
+      newSection.className = 'brand-showcase active';
+      const brandName = id.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/(^|\s)\S/g, l => l.toUpperCase());
+
+      const videos = brandData[id]?.map(link => {
+        return `<iframe src="${link}" allowfullscreen></iframe>`;
+      }).join('') || '';
+
+      newSection.innerHTML = `
+        <h2>${brandName}</h2>
+        <div class="videos">${videos}</div>
+        <button class="back-btn" onclick="goBack()">Back to Brands</button>
+      `;
+      showcaseContainer.appendChild(newSection);
+      window.scrollTo({ top: showcaseContainer.offsetTop - 20, behavior: 'smooth' });
+    }
+
+    function goBack() {
+      const showcaseContainer = document.getElementById('showcaseContainer');
+      showcaseContainer.innerHTML = '';
+      window.scrollTo({ top: document.getElementById('brandGrid').offsetTop - 20, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
