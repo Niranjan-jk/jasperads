@@ -1,244 +1,851 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jasperfilmz | Brand Showcase</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #0a0a0a;
-      --text: #e0e0e0;
-      --accent: #8a2be2;
-      --brand-hover: rgba(138, 43, 226, 0.1);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jasperfilmz | elite video editor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00f0ff;
+            --secondary: #7b2dff;
+            --accent: #ffd700;
+            --dark: #0a0a0a;
+            --darker: #050505;
+            --light: #f8f9fa;
+            --gray: #1a1a1a;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Outfit', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background: linear-gradient(to bottom right, #080808, #121212);
-      text-align: center;
-      padding: 0 20px;
-    }
-    header h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      max-width: 800px;
-      line-height: 1.3;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .brand-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
-      padding: 60px 40px;
-    }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.5;
+            font-weight: 400;
+            text-transform: lowercase;
+        }
 
-    .brand-tile {
-      background: #111;
-      border: 1px solid var(--brand-hover);
-      border-radius: 16px;
-      padding: 40px 20px;
-      text-align: center;
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--text);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .brand-tile:hover {
-      background: var(--brand-hover);
-      transform: scale(1.03);
-      color: var(--accent);
-      box-shadow: 0 0 30px rgba(138, 43, 226, 0.4);
-    }
+        /* Particles Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.1;
+        }
 
-    .brand-showcase {
-      display: none;
-      padding: 60px 40px;
-      background: #121212;
-      animation: fadeIn 0.5s ease forwards;
-    }
-    .brand-showcase.active {
-      display: block;
-    }
-    .brand-showcase h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: var(--accent);
-    }
-    .videos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-    }
-    iframe {
-      width: 100%;
-      height: 100%;
-      aspect-ratio: 16 / 9;
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-    }
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.8rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.5);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-    .back-btn {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 10px 20px;
-      font-weight: 600;
-      color: var(--text);
-      background: transparent;
-      border: 2px solid var(--accent);
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .back-btn:hover {
-      background: var(--accent);
-      color: #000;
-    }
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 500;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
 
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      color: #888;
-      font-size: 0.9rem;
-    }
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.05) 0%, rgba(10, 10, 10, 0) 70%);
+            animation: pulse 15s infinite alternate;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(25%, 25%);
+            }
+            100% {
+                transform: translate(-25%, -25%);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--light), #ddd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            max-width: 1000px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-bottom: 3rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 300;
+            letter-spacing: 0.3px;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--light);
+            font-size: 1.3rem;
+            animation: bounce 2s infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-15px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-7px) translateX(-50%);
+            }
+        }
+
+        /* Brands Section */
+        .brands-section {
+            padding: 8rem 5%;
+            background-color: var(--darker);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 1px;
+        }
+
+        .section-title p {
+            color: rgba(255, 255, 255, 0.4);
+            max-width: 500px;
+            margin: 0 auto;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+            font-size: 0.95rem;
+        }
+
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .brand-card {
+            background: var(--gray);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+        }
+
+        .brand-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.03), rgba(123, 45, 255, 0.03));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .brand-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 240, 255, 0.2);
+            background: #1e1e1e;
+        }
+
+        .brand-card:hover::before {
+            opacity: 1;
+        }
+
+        .brand-name {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--light);
+            transition: var(--transition);
+            position: relative;
+            z-index: 2;
+            letter-spacing: 0.5px;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .brand-card:hover .brand-name {
+            color: var(--primary);
+        }
+
+        .brand-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+
+        .brand-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Video Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            background: var(--darker);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            font-size: 1.3rem;
+            color: var(--light);
+            cursor: pointer;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+
+        .close-modal:hover {
+            background: var(--primary);
+            transform: rotate(90deg);
+            opacity: 1;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        .modal-header {
+            padding: 2rem;
+            background: linear-gradient(90deg, var(--darker), var(--gray));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .modal-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-header p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+
+        .videos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            background: #000;
+            border-radius: 6px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-wrapper:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 240, 255, 0.3);
+            cursor: pointer;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            padding: 4rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 1.4rem;
+            font-weight: 500;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            letter-spacing: 1px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--light);
+            font-size: 1.1rem;
+            transition: var(--transition);
+            opacity: 0.6;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Cursor Styles */
+        .brand-card,
+        .close-modal,
+        .social-links a,
+        .video-wrapper {
+            cursor: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='16' cy='16' r='8' fill='%2300f0ff'/%3E%3C/svg%3E"), auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .videos-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .brands-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+                line-height: 1.2;
+            }
+            
+            .brand-name {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+            
+            .brands-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .brand-card {
+                height: 160px;
+            }
+            
+            .modal-header {
+                padding: 1.5rem;
+            }
+            
+            .videos-container {
+                padding: 1.5rem;
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Jasperfilmz has worked with top-tier brands, delivering cinematic edits that demand attention.</h1>
-  </header>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
 
-  <section class="brand-grid" id="brandGrid">
-    <div class="brand-tile" onclick="showBrand('reviewboost')">Review Boost</div>
-    <div class="brand-tile" onclick="showBrand('curlwave')">Curlwave</div>
-    <div class="brand-tile" onclick="showBrand('dryp')">Dryp</div>
-    <div class="brand-tile" onclick="showBrand('biohack')">Biohack Yourself</div>
-    <div class="brand-tile" onclick="showBrand('traversy')">Traversy Media</div>
-    <div class="brand-tile" onclick="showBrand('isaac')">Isaac Harris-Holt</div>
-    <div class="brand-tile" onclick="showBrand('taoclean')">Tao Clean</div>
-    <div class="brand-tile" onclick="showBrand('vitauthority')">Vitauthority</div>
-    <div class="brand-tile" onclick="showBrand('switchresearch')">Switch Research</div>
-    <div class="brand-tile" onclick="showBrand('ethicalpap')">Ethical PAP</div>
-    <div class="brand-tile" onclick="showBrand('courtroom')">Courtroom Consequences</div>
-    <div class="brand-tile" onclick="showBrand('roblox')">The Roblox Coach</div>
-    <div class="brand-tile" onclick="showBrand('mason')">Mason</div>
-    <div class="brand-tile" onclick="showBrand('eplay')">Eplay Studios</div>
-    <div class="brand-tile" onclick="showBrand('webprodigies')">Web Prodigies</div>
-    <div class="brand-tile" onclick="showBrand('hustletok')">HustleTok</div>
-  </section>
+    <!-- Navigation -->
+    <header>
+        <div class="logo">jasperfilmz</div>
+    </header>
 
-  <section id="showcaseContainer"></section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>jasperfilmz has worked with top-tier brands across multiple industries</h1>
+        <p>crafting visually stunning narratives that elevate brands and captivate audiences through cinematic storytelling and precision editing.</p>
+        <div class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
 
-  <footer>© Jasperfilmz. All rights reserved.</footer>
+    <!-- Brands Section -->
+    <section class="brands-section">
+        <div class="section-title">
+            <h2>clients</h2>
+            <p>collaborations with industry leaders and innovative brands</p>
+        </div>
+        <div class="brands-grid">
+            <!-- Brand Cards will be generated by JavaScript -->
+        </div>
+    </section>
 
-  <script>
-    const brandData = {
-      reviewboost: [
-        'https://www.youtube.com/embed/teBgygTicwA',
-        'https://www.youtube.com/embed/Yvrxyxymmb4'
-      ],
-      curlwave: [
-        'https://drive.google.com/file/d/13fWuNqO8ED07yka1oBt4iFdaiCRs_m1t/preview'
-      ],
-      dryp: [
-        'https://drive.google.com/file/d/1L0jF9O0lW05EoR5iciMnSoLAA2C6bDq6/preview',
-        'https://drive.google.com/file/d/1qIa4AvGsEnOxhoFAk9pQoJRsoeEBfnEr/preview'
-      ],
-      biohack: [
-        'https://drive.google.com/file/d/1s2JTpiPtljtBIS6eBTe01_Cc7iNMBU6D/preview',
-        'https://drive.google.com/file/d/1N-GjZ35axHygqx0t3SM9AhsVnvkuxDWp/preview'
-      ],
-      traversy: [
-        'https://drive.google.com/file/d/16zZN1s8cashn-9EOn6qwjAlpgV0ItZzm/preview',
-        'https://drive.google.com/file/d/1Md-VrOG7WRyD5DWQNjjaVxk4slszksmC/preview'
-      ],
-      isaac: [
-        'https://drive.google.com/file/d/1PWkz04Dvrq_SXJbIWwg8n2-pISV0orHW/preview'
-      ],
-      taoclean: [
-        'https://embed.f.io/Rs1VWrxJ',
-        'https://embed.f.io/z2VTTO94'
-      ],
-      vitauthority: [
-        'https://embed.f.io/k10NFc6h'
-      ],
-      switchresearch: [
-        'https://embed.f.io/lGP25E00'
-      ],
-      ethicalpap: [
-        'https://www.youtube.com/embed/gZIrwkE3cks',
-        'https://www.youtube.com/embed/gMQYCFOoZOk'
-      ],
-      courtroom: [
-        'https://drive.google.com/file/d/1hu-Q3QhCy38YRDP-q3HbRXQLyji5bBHz/preview'
-      ],
-      roblox: [
-        'https://drive.google.com/file/d/1NVnJiuUTgjF2OaBPp7VXNPElsg9U89m9/preview'
-      ],
-      mason: [
-        'https://drive.google.com/file/d/1eDLUMOax5Cevb40quKTu_M2tDVJ_oUlj/preview',
-        'https://drive.google.com/file/d/1WJn3vSwJArfG3HjiDln3TIA8BRDF2U4E/preview'
-      ],
-      eplay: [
-        'https://www.youtube.com/embed/wdc9zlovHwM',
-        'https://www.youtube.com/embed/yNVutab2tXQ'
-      ],
-      webprodigies: [
-        'https://www.youtube.com/embed/XkOXNlHJP6M',
-        'https://www.youtube.com/embed/3R63m4sTpKo'
-      ],
-      hustletok: [
-        'https://www.youtube.com/embed/fZJJmE2LLnc'
-      ]
-    };
+    <!-- Video Modal -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h3 id="modalBrandTitle">brand name</h3>
+                <p id="modalBrandDesc">video showcase for this brand</p>
+            </div>
+            <div class="videos-container" id="videosContainer">
+                <!-- Videos will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </div>
 
-    function showBrand(id) {
-      const showcaseContainer = document.getElementById('showcaseContainer');
-      showcaseContainer.innerHTML = '';
-      const newSection = document.createElement('section');
-      newSection.className = 'brand-showcase active';
-      const brandName = id.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/(^|\s)\S/g, l => l.toUpperCase());
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">jasperfilmz</div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p class="copyright">© 2023 jasperfilmz. all rights reserved.</p>
+        </div>
+    </footer>
 
-      const videos = brandData[id]?.map(link => {
-        return `<iframe src="${link}" allowfullscreen></iframe>`;
-      }).join('') || '';
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize particles.js
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 60,
+                        "density": {
+                            "enable": true,
+                            "value_area": 1200
+                        }
+                    },
+                    "color": {
+                        "value": "#00f0ff"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.3,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 2,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#00f0ff",
+                        "opacity": 0.1,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 0.6,
+                        "direction": "none",
+                        "random": true,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": true,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 0.5
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
 
-      newSection.innerHTML = `
-        <h2>${brandName}</h2>
-        <div class="videos">${videos}</div>
-        <button class="back-btn" onclick="goBack()">Back to Brands</button>
-      `;
-      showcaseContainer.appendChild(newSection);
-      window.scrollTo({ top: showcaseContainer.offsetTop - 20, behavior: 'smooth' });
-    }
+            // Brand data with video links
+            const brands = [
+                {
+                    name: "review boost",
+                    description: "social media content creation",
+                    videos: [
+                        "https://www.youtube.com/embed/teBgygTicwA",
+                        "https://www.youtube.com/embed/Yvrxyxymmb4"
+                    ]
+                },
+                {
+                    name: "curlwave",
+                    description: "product promotional videos",
+                    videos: [
+                        "https://drive.google.com/file/d/13fWuNqO8ED07yka1oBt4iFdaiCRs_m1t/preview"
+                    ]
+                },
+                {
+                    name: "dryp",
+                    description: "brand storytelling",
+                    videos: [
+                        "https://drive.google.com/file/d/1L0jF9O0lW05EoR5iciMnSoLAA2C6bDq6/preview",
+                        "https://drive.google.com/file/d/1qIa4AvGsEnOxhoFAk9pQoJRsoeEBfnEr/preview"
+                    ]
+                },
+                {
+                    name: "biohack yourself",
+                    description: "educational content",
+                    videos: [
+                        "https://drive.google.com/file/d/1s2JTpiPtljtBIS6eBTe01_Cc7iNMBU6D/preview",
+                        "https://drive.google.com/file/d/1N-GjZ35axHygqx0t3SM9AhsVnvkuxDWp/preview"
+                    ]
+                },
+                {
+                    name: "traversy media",
+                    description: "tutorial content",
+                    videos: [
+                        "https://drive.google.com/file/d/16zZN1s8cashn-9EOn6qwjAlpgV0ItZzm/preview",
+                        "https://drive.google.com/file/d/1Md-VrOG7WRyD5DWQNjjaVxk4slszksmC/preview"
+                    ]
+                },
+                {
+                    name: "isaac harris-holt",
+                    description: "personal branding",
+                    videos: [
+                        "https://drive.google.com/file/d/1PWkz04Dvrq_SXJbIWwg8n2-pISV0orHW/preview"
+                    ]
+                },
+                {
+                    name: "tao clean",
+                    description: "product marketing",
+                    videos: [
+                        "https://drive.google.com/file/d/Rs1VWrxJ/preview",
+                        "https://drive.google.com/file/d/z2VTTO94/preview"
+                    ]
+                },
+                {
+                    name: "vitauthority",
+                    description: "health content",
+                    videos: [
+                        "https://drive.google.com/file/d/k10NFc6h/preview"
+                    ]
+                },
+                {
+                    name: "switch research",
+                    description: "research presentation",
+                    videos: [
+                        "https://drive.google.com/file/d/lGP25E00/preview"
+                    ]
+                },
+                {
+                    name: "ethical pap",
+                    description: "social content",
+                    videos: [
+                        "https://www.youtube.com/embed/gZIrwkE3cks",
+                        "https://www.youtube.com/embed/gMQYCFOoZOk"
+                    ]
+                },
+                {
+                    name: "courtroom consequences",
+                    description: "legal content",
+                    videos: [
+                        "https://drive.google.com/file/d/1hu-Q3QhCy38YRDP-q3HbRXQLyji5bBHz/preview"
+                    ]
+                },
+                {
+                    name: "the roblox coach",
+                    description: "gaming content",
+                    videos: [
+                        "https://drive.google.com/file/d/1NVnJiuUTgjF2OaBPp7VXNPElsg9U89m9/preview"
+                    ]
+                },
+                {
+                    name: "mason",
+                    description: "brand content",
+                    videos: [
+                        "https://drive.google.com/file/d/1eDLUMOax5Cevb40quKTu_M2tDVJ_oUlj/preview",
+                        "https://drive.google.com/file/d/1WJn3vSwJArfG3HjiDln3TIA8BRDF2U4E/preview"
+                    ]
+                },
+                {
+                    name: "eplay studios",
+                    description: "gaming studio content",
+                    videos: [
+                        "https://www.youtube.com/embed/wdc9zlovHwM",
+                        "https://www.youtube.com/embed/yNVutab2tXQ"
+                    ]
+                },
+                {
+                    name: "web prodigies",
+                    description: "educational content",
+                    videos: [
+                        "https://www.youtube.com/embed/XkOXNlHJP6M",
+                        "https://www.youtube.com/embed/3R63m4sTpKo"
+                    ]
+                }
+            ];
 
-    function goBack() {
-      const showcaseContainer = document.getElementById('showcaseContainer');
-      showcaseContainer.innerHTML = '';
-      window.scrollTo({ top: document.getElementById('brandGrid').offsetTop - 20, behavior: 'smooth' });
-    }
-  </script>
+            // Generate brand cards
+            const brandsGrid = document.querySelector('.brands-grid');
+            
+            brands.forEach(brand => {
+                const brandCard = document.createElement('div');
+                brandCard.className = 'brand-card';
+                brandCard.innerHTML = `
+                    <div class="brand-name">${brand.name}</div>
+                `;
+                
+                brandCard.addEventListener('click', () => openModal(brand));
+                brandCard.addEventListener('mouseenter', () => {
+                    brandCard.style.cursor = "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 32 32\"><circle cx=\"16\" cy=\"16\" r=\"10\" fill=\"none\" stroke=\"%2300f0ff\" stroke-width=\"2\"/></svg>'), auto";
+                });
+                brandsGrid.appendChild(brandCard);
+            });
+
+            // Modal functionality
+            const modal = document.getElementById('videoModal');
+            const closeModal = document.querySelector('.close-modal');
+            const modalBrandTitle = document.getElementById('modalBrandTitle');
+            const modalBrandDesc = document.getElementById('modalBrandDesc');
+            const videosContainer = document.getElementById('videosContainer');
+
+            function openModal(brand) {
+                modalBrandTitle.textContent = brand.name;
+                modalBrandDesc.textContent = brand.description;
+                videosContainer.innerHTML = '';
+                
+                brand.videos.forEach(videoUrl => {
+                    const videoWrapper = document.createElement('div');
+                    videoWrapper.className = 'video-wrapper';
+                    videoWrapper.innerHTML = `
+                        <iframe src="${videoUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    `;
+                    videosContainer.appendChild(videoWrapper);
+                });
+                
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+
+            closeModal.addEventListener('click', () => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
