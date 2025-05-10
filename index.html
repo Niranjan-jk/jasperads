@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jasperfilmz | elite video editor</title>
+    <title>LUXE CINEMA | Premium Video Editing</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #00f0ff;
-            --secondary: #7b2dff;
-            --accent: #ffd700;
+            --primary: #0af;
+            --secondary: #a0f;
+            --accent: #fc0;
             --dark: #0a0a0a;
             --darker: #050505;
-            --light: #f8f9fa;
-            --gray: #1a1a1a;
+            --light: #f0f0f0;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
             --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -27,60 +28,133 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--dark);
             color: var(--light);
             overflow-x: hidden;
-            line-height: 1.5;
-            font-weight: 400;
-            text-transform: lowercase;
+            line-height: 1.6;
         }
 
-        /* Particles Background */
-        #particles-js {
-            position: fixed;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
             width: 100%;
-            height: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .section-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
             top: 0;
             left: 0;
-            z-index: -1;
-            opacity: 0.1;
-        }
-
-        /* Navigation */
-        header {
-            position: fixed;
-            top: 0;
             width: 100%;
-            padding: 1.8rem 5%;
+            padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(10, 10, 10, 0.5);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            background-color: rgba(10, 10, 10, 0.8);
+            border-bottom: 1px solid var(--glass-border);
         }
 
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 500;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
+        .navbar-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            letter-spacing: 1px;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .navbar-links a {
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .navbar-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: var(--transition);
+        }
+
+        .navbar-links a:hover {
+            color: var(--primary);
+        }
+
+        .navbar-links a:hover::after {
+            width: 100%;
+        }
+
+        .navbar-cta {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .navbar-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 170, 255, 0.2);
         }
 
         /* Hero Section */
         .hero {
             height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 0 5%;
             position: relative;
             overflow: hidden;
         }
@@ -88,47 +162,82 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0, 240, 255, 0.05) 0%, rgba(10, 10, 10, 0) 70%);
-            animation: pulse 15s infinite alternate;
-            z-index: -1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(5, 5, 5, 0.8) 0%, rgba(5, 5, 5, 0.4) 100%);
+            z-index: 1;
         }
 
-        @keyframes pulse {
-            0% {
-                transform: translate(0, 0);
-            }
-            50% {
-                transform: translate(25%, 25%);
-            }
-            100% {
-                transform: translate(-25%, -25%);
-            }
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
         }
 
-        .hero h1 {
-            font-size: 3.8rem;
-            font-weight: 500;
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
             margin-bottom: 1.5rem;
-            background: linear-gradient(45deg, var(--light), #ddd);
+            line-height: 1.1;
+        }
+
+        .hero-content h1 span {
+            display: block;
+            font-size: 5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            line-height: 1.1;
-            letter-spacing: -1px;
-            max-width: 1000px;
         }
 
-        .hero p {
-            font-size: 1.1rem;
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
             max-width: 600px;
-            margin-bottom: 3rem;
-            color: rgba(255, 255, 255, 0.6);
-            font-weight: 300;
-            letter-spacing: 0.3px;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 1.1rem;
+            transition: var(--transition);
+            margin-right: 1rem;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 170, 255, 0.3);
+        }
+
+        .hero-secondary {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .hero-secondary:hover {
+            background-color: var(--primary);
+            color: var(--dark);
         }
 
         .scroll-down {
@@ -136,716 +245,1335 @@
             bottom: 2rem;
             left: 50%;
             transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             color: var(--light);
-            font-size: 1.3rem;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .scroll-down:hover {
+            opacity: 1;
+        }
+
+        .scroll-down i {
+            font-size: 1.5rem;
+            margin-top: 0.5rem;
             animation: bounce 2s infinite;
-            opacity: 0.5;
         }
 
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0) translateX(-50%);
+                transform: translateY(0);
             }
             40% {
-                transform: translateY(-15px) translateX(-50%);
+                transform: translateY(-10px);
             }
             60% {
-                transform: translateY(-7px) translateX(-50%);
+                transform: translateY(-5px);
             }
         }
 
-        /* Brands Section */
-        .brands-section {
-            padding: 8rem 5%;
-            background-color: var(--darker);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-            position: relative;
-        }
-
-        .section-title h2 {
-            font-size: 1.8rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
-            color: rgba(255, 255, 255, 0.8);
-            letter-spacing: 1px;
-        }
-
-        .section-title p {
-            color: rgba(255, 255, 255, 0.4);
-            max-width: 500px;
-            margin: 0 auto;
-            font-weight: 300;
-            letter-spacing: 0.3px;
-            font-size: 0.95rem;
-        }
-
-        .brands-grid {
+        /* Video Grid */
+        .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 2rem;
         }
 
-        .brand-card {
-            background: var(--gray);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: var(--transition);
+        .video-card {
             position: relative;
-            height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            cursor: pointer;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            transition: var(--transition);
         }
 
-        .brand-card::before {
+        .video-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(0, 240, 255, 0.03), rgba(123, 45, 255, 0.03));
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.7) 100%);
+            z-index: 1;
             opacity: 0;
             transition: var(--transition);
         }
 
-        .brand-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            border-color: rgba(0, 240, 255, 0.2);
-            background: #1e1e1e;
-        }
-
-        .brand-card:hover::before {
+        .video-card:hover::before {
             opacity: 1;
         }
 
-        .brand-name {
-            font-size: 1.3rem;
-            font-weight: 400;
-            color: var(--light);
-            transition: var(--transition);
-            position: relative;
+        .video-card iframe,
+        .video-card video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-card .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             z-index: 2;
-            letter-spacing: 0.5px;
-            padding: 0 2rem;
-            text-align: center;
+            opacity: 0;
+            transition: var(--transition);
         }
 
-        .brand-card:hover .brand-name {
-            color: var(--primary);
+        .video-card:hover .play-icon {
+            opacity: 1;
         }
 
-        .brand-card::after {
-            content: '';
+        .video-card .play-icon i {
+            font-size: 1.5rem;
+            color: white;
+            margin-left: 5px;
+        }
+
+        .video-card .video-title {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transform: scaleX(0);
-            transform-origin: left;
+            padding: 1.5rem;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(20px);
             transition: var(--transition);
         }
 
-        .brand-card:hover::after {
-            transform: scaleX(1);
+        .video-card:hover .video-title {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* Video Modal */
+        .video-card .video-title h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-card .video-title p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Clients Section */
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .client-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background-color: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            transition: var(--transition);
+            height: 150px;
+        }
+
+        .client-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 170, 255, 0.1);
+            border-color: var(--primary);
+        }
+
+        .client-logo img {
+            max-width: 100%;
+            max-height: 80px;
+            filter: grayscale(100%) brightness(2);
+            transition: var(--transition);
+        }
+
+        .client-logo:hover img {
+            filter: grayscale(0) brightness(1);
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background-color: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 170, 255, 0.1);
+            border-color: var(--primary);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+            border: 2px solid var(--primary);
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-author h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .testimonial-author p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .testimonial-quote {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .testimonial-quote::before {
+            content: '"';
+            font-size: 3rem;
+            position: absolute;
+            top: -20px;
+            left: -15px;
+            opacity: 0.2;
+            font-family: serif;
+        }
+
+        .testimonial-rating {
+            color: var(--accent);
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 170, 255, 0.05) 0%, rgba(160, 0, 255, 0.05) 100%);
+            z-index: -1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 170, 255, 0.1);
+            border-color: var(--primary);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .service-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .service-cta {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background-color: var(--primary);
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .service-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 170, 255, 0.3);
+        }
+
+        /* Contact Form */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .contact-info p {
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-item i {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            background-color: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 5px;
+            color: var(--light);
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0, 170, 255, 0.2);
+        }
+
+        .form-submit {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--dark);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .form-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 170, 255, 0.3);
+        }
+
+        /* FAQ */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background-color: var(--glass);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background-color: rgba(0, 170, 255, 0.05);
+        }
+
+        .faq-question i {
+            transition: var(--transition);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-question {
+            background-color: rgba(0, 170, 255, 0.1);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker);
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-about p {
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--glass);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+            color: var(--dark);
+        }
+
+        .footer-links h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        .footer-newsletter p {
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .newsletter-form {
+            display: flex;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 5px 0 0 5px;
+            color: var(--light);
+            font-family: inherit;
+        }
+
+        .newsletter-form button {
+            padding: 0 1.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 0 5px 5px 0;
+            font-weight: 600;
+            color: var(--dark);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            opacity: 0.9;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Modal */
         .modal {
-            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            background-color: rgba(5, 5, 5, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             z-index: 2000;
-            overflow-y: auto;
-            padding: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         .modal-content {
-            max-width: 1200px;
-            margin: 2rem auto;
-            background: var(--darker);
-            border-radius: 8px;
+            width: 90%;
+            max-width: 1000px;
+            background-color: var(--darker);
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
             position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            font-size: 1.3rem;
-            color: var(--light);
-            cursor: pointer;
-            z-index: 10;
-            background: rgba(0, 0, 0, 0.5);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
+            transform: scale(0.9);
             transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0.7;
         }
 
-        .close-modal:hover {
-            background: var(--primary);
-            transform: rotate(90deg);
-            opacity: 1;
-            color: var(--dark);
-            cursor: pointer;
+        .modal.active .modal-content {
+            transform: scale(1);
         }
 
-        .modal-header {
-            padding: 2rem;
-            background: linear-gradient(90deg, var(--darker), var(--gray));
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        .modal-video {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background-color: black;
         }
 
-        .modal-header h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--light);
-            font-weight: 400;
-            letter-spacing: 0.5px;
-        }
-
-        .modal-header p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-            letter-spacing: 0.3px;
-        }
-
-        .videos-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-            gap: 1.5rem;
-            padding: 2rem;
-        }
-
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-            background: #000;
-            border-radius: 6px;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .video-wrapper:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            border-color: rgba(0, 240, 255, 0.3);
-            cursor: pointer;
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .modal-video iframe {
             width: 100%;
             height: 100%;
             border: none;
         }
 
-        /* Footer */
-        footer {
-            background: var(--darker);
-            padding: 4rem 5%;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .footer-content {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .footer-logo {
-            font-size: 1.4rem;
-            font-weight: 500;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 1.5rem;
-            display: inline-block;
-            letter-spacing: 1px;
-        }
-
-        .social-links {
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
             display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .social-links a {
-            color: var(--light);
-            font-size: 1.1rem;
-            transition: var(--transition);
-            opacity: 0.6;
-        }
-
-        .social-links a:hover {
-            color: var(--primary);
-            transform: translateY(-3px);
-            opacity: 1;
             cursor: pointer;
+            transition: var(--transition);
+            z-index: 2;
         }
 
-        .copyright {
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 0.8rem;
-            letter-spacing: 0.5px;
+        .modal-close:hover {
+            background-color: var(--primary);
+            color: var(--dark);
         }
 
-        /* Cursor Styles */
-        .brand-card,
-        .close-modal,
-        .social-links a,
-        .video-wrapper {
-            cursor: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='16' cy='16' r='8' fill='%2300f0ff'/%3E%3C/svg%3E"), auto;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .hero h1 {
-                font-size: 3.2rem;
-            }
-            
-            .videos-container {
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .contact-container {
                 grid-template-columns: 1fr;
             }
-        }
-
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
             
-            .brands-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            .video-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             }
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2rem;
-                line-height: 1.2;
+            section {
+                padding: 5rem 0;
             }
             
-            .brand-name {
-                font-size: 1.1rem;
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-content h1 span {
+                font-size: 3.5rem;
+            }
+            
+            .navbar-links {
+                display: none;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
             }
         }
 
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 1.8rem;
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1.5rem;
             }
             
-            .hero p {
-                font-size: 1rem;
+            .hero-content h1 {
+                font-size: 2.5rem;
             }
             
-            .section-title h2 {
-                font-size: 1.5rem;
+            .hero-content h1 span {
+                font-size: 3rem;
             }
             
-            .brands-grid {
+            .hero-cta, .hero-secondary {
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+            
+            .video-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .brand-card {
-                height: 160px;
-            }
-            
-            .modal-header {
-                padding: 1.5rem;
-            }
-            
-            .videos-container {
-                padding: 1.5rem;
-                grid-template-columns: 1fr;
-            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        .delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        .delay-5 {
+            transition-delay: 0.5s;
         }
     </style>
 </head>
 <body>
-    <!-- Particles Background -->
-    <div id="particles-js"></div>
-
-    <!-- Navigation -->
-    <header>
-        <div class="logo">jasperfilmz</div>
-    </header>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#" class="navbar-logo">LUXE CINEMA</a>
+        <div class="navbar-links">
+            <a href="#works">Works</a>
+            <a href="#clients">Clients</a>
+            <a href="#services">Services</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
+            <a href="#faq">FAQ</a>
+        </div>
+        <a href="#contact" class="navbar-cta">Get Started</a>
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>jasperfilmz has worked with top-tier brands across multiple industries</h1>
-        <p>crafting visually stunning narratives that elevate brands and captivate audiences through cinematic storytelling and precision editing.</p>
-        <div class="scroll-down">
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
-
-    <!-- Brands Section -->
-    <section class="brands-section">
-        <div class="section-title">
-            <h2>clients</h2>
-            <p>collaborations with industry leaders and innovative brands</p>
-        </div>
-        <div class="brands-grid">
-            <!-- Brand Cards will be generated by JavaScript -->
-        </div>
-    </section>
-
-    <!-- Video Modal -->
-    <div class="modal" id="videoModal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div class="modal-header">
-                <h3 id="modalBrandTitle">brand name</h3>
-                <p id="modalBrandDesc">video showcase for this brand</p>
+        <video class="hero-video" autoplay muted loop>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-editing-video-on-her-laptop-2282-large.mp4" type="video/mp4">
+        </video>
+        <div class="container">
+            <div class="hero-content fade-in active">
+                <h1>Transform Your Content With <span>Cinematic Editing</span></h1>
+                <p>Ditch the Cold DMs. Let a High-Converting YouTube Funnel Bring You 15-30 Qualified Leads Every Month.</p>
+                <div class="hero-actions">
+                    <a href="#contact" class="hero-cta">Book a Call</a>
+                    <a href="#works" class="hero-secondary">View Portfolio</a>
+                </div>
             </div>
-            <div class="videos-container" id="videosContainer">
-                <!-- Videos will be inserted here by JavaScript -->
+        </div>
+        <a href="#works" class="scroll-down fade-in delay-3">
+            Scroll Down
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- Works Section -->
+    <section id="works" class="works">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Featured Works</h2>
+                <p>Explore our portfolio of high-impact video content that drives engagement and conversions for premium brands.</p>
+            </div>
+            
+            <h3 class="fade-in delay-1" style="margin-bottom: 1.5rem; font-size: 1.8rem;">Longform Content</h3>
+            <div class="video-grid">
+                <div class="video-card fade-in delay-1">
+                    <iframe src="https://www.youtube.com/embed/_abUHbs0vP4?rel=0" frameborder="0" allowfullscreen></iframe>
+                    <div class="play-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-title">
+                        <h3>Brand Documentary</h3>
+                        <p>Client: Ethical Pap</p>
+                    </div>
+                </div>
+                <div class="video-card fade-in delay-2">
+                    <iframe src="https://www.youtube.com/embed/-EDHQ4IB6k?rel=0" frameborder="0" allowfullscreen></iframe>
+                    <div class="play-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-title">
+                        <h3>Product Launch</h3>
+                        <p>Client: Dryp</p>
+                    </div>
+                </div>
+                <div class="video-card fade-in delay-3">
+                    <iframe src="https://www.youtube.com/embed/4IIXAPg6QkU?rel=0" frameborder="0" allowfullscreen></iframe>
+                    <div class="play-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-title">
+                        <h3>Educational Series</h3>
+                        <p>Client: Biohack Yourself</p>
+                    </div>
+                </div>
+                <div class="video-card fade-in delay-4">
+                    <iframe src="https://www.youtube.com/embed/VQgPg8cHzjI?rel=0" frameborder="0" allowfullscreen></iframe>
+                    <div class="play-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-title">
+                        <h3>Brand Story</h3>
+                        <p>Client: Vitauthority</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 class="fade-in delay-1" style="margin: 3rem 0 1.5rem; font-size: 1.8rem;">Shortform Content</h3>
+            <div class="video-grid">
+                <div class="video-card fade-in delay-1">
+                    <iframe src="https://www.youtube.com/embed/WO0Ry4HGUNo?rel=0" frameborder="0" allowfullscreen></iframe>
+                    <div class="play-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-title">
+                        <h3>Social Media Ad</h3>
+                        <p>Client: Review Boost</p>
+                    </div>
+                </div>
+                <div class="video-card fade-in delay-2">
+                    <iframe src="https://www.youtube.com/embed/RKE7C8gufZo?rel=0" frameborder="0" allowfullscreen></iframe>
+                    <div class="play-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-title">
+                        <h3>TikTok Campaign</h3>
+                        <p>Client: Curlwave</p>
+                    </div>
+                </div>
+                <div class="video-card fade-in delay-3">
+                    <iframe src="https://www.youtube.com/embed/ZkkQfc9iF3s?rel=0" frameborder="0" allowfullscreen></iframe>
+                    <div class="play-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-title">
+                        <h3>Instagram Reel</h3>
+                        <p>Client: Tao Clean</p>
+                    </div>
+                </div>
+                <div class="video-card fade-in delay-4">
+                    <iframe src="https://www.youtube.com/embed/V4lUZjmrEnk?rel=0" frameborder="0" allowfullscreen></iframe>
+                    <div class="play-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-title">
+                        <h3>YouTube Short</h3>
+                        <p>Client: Switch Research</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section id="clients" class="clients">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Trusted By Industry Leaders</h2>
+                <p>We've had the privilege of working with some of the most innovative brands in the industry.</p>
+            </div>
+            <div class="clients-grid">
+                <div class="client-logo fade-in delay-1">
+                    <img src="https://via.placeholder.com/150x60?text=Review+Boost" alt="Review Boost">
+                </div>
+                <div class="client-logo fade-in delay-2">
+                    <img src="https://via.placeholder.com/150x60?text=Curlwave" alt="Curlwave">
+                </div>
+                <div class="client-logo fade-in delay-3">
+                    <img src="https://via.placeholder.com/150x60?text=Dryp" alt="Dryp">
+                </div>
+                <div class="client-logo fade-in delay-4">
+                    <img src="https://via.placeholder.com/150x60?text=Biohack+Yourself" alt="Biohack Yourself">
+                </div>
+                <div class="client-logo fade-in delay-1">
+                    <img src="https://via.placeholder.com/150x60?text=Traversy+Media" alt="Traversy Media">
+                </div>
+                <div class="client-logo fade-in delay-2">
+                    <img src="https://via.placeholder.com/150x60?text=Tao+Clean" alt="Tao Clean">
+                </div>
+                <div class="client-logo fade-in delay-3">
+                    <img src="https://via.placeholder.com/150x60?text=Vitauthority" alt="Vitauthority">
+                </div>
+                <div class="client-logo fade-in delay-4">
+                    <img src="https://via.placeholder.com/150x60?text=Switch+Research" alt="Switch Research">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Client Testimonials</h2>
+                <p>Don't just take our word for it. Here's what our clients have to say about working with us.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in delay-1">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah J.">
+                        </div>
+                        <div class="testimonial-author">
+                            <h4>Sarah Johnson</h4>
+                            <p>CEO, Review Boost</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-quote">
+                        "The videos LUXE CINEMA produced for us increased our conversion rate by 35% month-over-month. Their attention to detail and understanding of our brand voice is unmatched."
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in delay-2">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael T.">
+                        </div>
+                        <div class="testimonial-author">
+                            <h4>Michael Thompson</h4>
+                            <p>Marketing Director, Dryp</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-quote">
+                        "Working with LUXE CINEMA was a game-changer for our product launch. They took our vision and elevated it beyond what we imagined possible."
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in delay-3">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Lisa M.">
+                        </div>
+                        <div class="testimonial-author">
+                            <h4>Lisa Martinez</h4>
+                            <p>Founder, Biohack Yourself</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-quote">
+                        "The educational series they created for us has become our top-performing content, driving thousands of new subscribers to our channel. Their storytelling is exceptional."
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Our Services</h2>
+                <p>We offer a comprehensive suite of video production services tailored to your brand's needs.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in delay-1">
+                    <div class="service-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3>Premium Video Editing</h3>
+                    <p>Cinematic editing for longform content, documentaries, and brand stories that captivate your audience.</p>
+                    <div class="service-price">From $1,500</div>
+                    <a href="#contact" class="service-cta">Get Started</a>
+                </div>
+                <div class="service-card fade-in delay-2">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-screen"></i>
+                    </div>
+                    <h3>Shortform Content</h3>
+                    <p>High-impact social media videos optimized for TikTok, Instagram Reels, and YouTube Shorts.</p>
+                    <div class="service-price">From $800</div>
+                    <a href="#contact" class="service-cta">Get Started</a>
+                </div>
+                <div class="service-card fade-in delay-3">
+                    <div class="service-icon">
+                        <i class="fas fa-funnel-dollar"></i>
+                    </div>
+                    <h3>Conversion Funnels</h3>
+                    <p>Complete video funnel systems designed to maximize conversions and generate qualified leads.</p>
+                    <div class="service-price">From $3,000</div>
+                    <a href="#contact" class="service-cta">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Get In Touch</h2>
+                <p>Ready to elevate your brand with cinematic video content? Let's start a conversation.</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info fade-in delay-1">
+                    <h3>Let's Create Something Extraordinary</h3>
+                    <p>Whether you have a project in mind or just want to explore possibilities, we'd love to hear from you.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@luxecinema.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Los Angeles, CA</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form fade-in delay-2">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service Interested In</label>
+                            <select id="service">
+                                <option value="">Select a service</option>
+                                <option value="editing">Premium Video Editing</option>
+                                <option value="shortform">Shortform Content</option>
+                                <option value="funnels">Conversion Funnels</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about our video editing services and process.</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item fade-in delay-1">
+                    <div class="faq-question">
+                        <span>What's your typical turnaround time?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our standard turnaround time is 7-10 business days for most projects. However, we offer expedited services (3-5 days) for an additional 25% fee. Complex projects or those requiring extensive revisions may take longer.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in delay-2">
+                    <div class="faq-question">
+                        <span>How many revisions do you include?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We include 2 rounds of revisions in our standard packages. Additional revisions can be purchased if needed. Our goal is to get it right the first time, so we work closely with you during the initial briefing phase.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in delay-3">
+                    <div class="faq-question">
+                        <span>What file formats do you deliver?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We deliver in all standard formats (MP4, MOV, etc.) optimized for your specific platform needs (YouTube, Instagram, etc.). We also provide project files (Premiere Pro, After Effects) upon request for an additional fee.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in delay-4">
+                    <div class="faq-question">
+                        <span>Do you offer ongoing video editing services?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Many of our clients opt for our monthly retainer packages which offer discounted rates and priority scheduling. These are ideal for brands with consistent video content needs.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in delay-5">
+                    <div class="faq-question">
+                        <span>What information do you need to start a project?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We'll need your raw footage, brand guidelines (colors, fonts, logos), any specific music preferences, and a detailed brief outlining your goals, target audience, and key messages. We provide a comprehensive questionnaire to gather all necessary information.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">LUXE CINEMA</div>
+                    <p>Transforming brands through cinematic storytelling and high-converting video content.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-vimeo-v"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#works">Portfolio</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Video Editing</a></li>
+                        <li><a href="#">Social Media Content</a></li>
+                        <li><a href="#">Video Funnels</a></li>
+                        <li><a href="#">Motion Graphics</a></li>
+                        <li><a href="#">Color Grading</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Subscribe to our newsletter for tips, case studies, and special offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email">
+                        <button type="submit">Join</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 LUXE CINEMA. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal">
+        <div class="modal-content">
+            <div class="modal-close">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="modal-video">
+                <iframe id="modal-iframe" src="" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">jasperfilmz</div>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-vimeo-v"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-            </div>
-            <p class="copyright">© 2023 jasperfilmz. all rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Initialize particles.js
-        document.addEventListener('DOMContentLoaded', function() {
-            particlesJS('particles-js', {
-                "particles": {
-                    "number": {
-                        "value": 60,
-                        "density": {
-                            "enable": true,
-                            "value_area": 1200
-                        }
-                    },
-                    "color": {
-                        "value": "#00f0ff"
-                    },
-                    "shape": {
-                        "type": "circle",
-                        "stroke": {
-                            "width": 0,
-                            "color": "#000000"
-                        },
-                        "polygon": {
-                            "nb_sides": 5
-                        }
-                    },
-                    "opacity": {
-                        "value": 0.3,
-                        "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 1,
-                            "opacity_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "size": {
-                        "value": 3,
-                        "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 2,
-                            "size_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "line_linked": {
-                        "enable": true,
-                        "distance": 150,
-                        "color": "#00f0ff",
-                        "opacity": 0.1,
-                        "width": 1
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 0.6,
-                        "direction": "none",
-                        "random": true,
-                        "straight": false,
-                        "out_mode": "out",
-                        "bounce": false,
-                        "attract": {
-                            "enable": true,
-                            "rotateX": 600,
-                            "rotateY": 1200
-                        }
-                    }
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "grab"
-                        },
-                        "onclick": {
-                            "enable": true,
-                            "mode": "push"
-                        },
-                        "resize": true
-                    },
-                    "modes": {
-                        "grab": {
-                            "distance": 140,
-                            "line_linked": {
-                                "opacity": 0.5
-                            }
-                        },
-                        "bubble": {
-                            "distance": 400,
-                            "size": 40,
-                            "duration": 2,
-                            "opacity": 8,
-                            "speed": 3
-                        },
-                        "repulse": {
-                            "distance": 200,
-                            "duration": 0.4
-                        },
-                        "push": {
-                            "particles_nb": 4
-                        },
-                        "remove": {
-                            "particles_nb": 2
-                        }
-                    }
-                },
-                "retina_detect": true
-            });
-
-            // Brand data with video links
-            const brands = [
-                {
-                    name: "review boost",
-                    description: "social media content creation",
-                    videos: [
-                        "https://www.youtube.com/embed/teBgygTicwA",
-                        "https://www.youtube.com/embed/Yvrxyxymmb4"
-                    ]
-                },
-                {
-                    name: "curlwave",
-                    description: "product promotional videos",
-                    videos: [
-                        "https://drive.google.com/file/d/13fWuNqO8ED07yka1oBt4iFdaiCRs_m1t/preview"
-                    ]
-                },
-                {
-                    name: "dryp",
-                    description: "brand storytelling",
-                    videos: [
-                        "https://drive.google.com/file/d/1L0jF9O0lW05EoR5iciMnSoLAA2C6bDq6/preview",
-                        "https://drive.google.com/file/d/1qIa4AvGsEnOxhoFAk9pQoJRsoeEBfnEr/preview"
-                    ]
-                },
-                {
-                    name: "biohack yourself",
-                    description: "educational content",
-                    videos: [
-                        "https://drive.google.com/file/d/1s2JTpiPtljtBIS6eBTe01_Cc7iNMBU6D/preview",
-                        "https://drive.google.com/file/d/1N-GjZ35axHygqx0t3SM9AhsVnvkuxDWp/preview"
-                    ]
-                },
-                {
-                    name: "traversy media",
-                    description: "tutorial content",
-                    videos: [
-                        "https://drive.google.com/file/d/16zZN1s8cashn-9EOn6qwjAlpgV0ItZzm/preview",
-                        "https://drive.google.com/file/d/1Md-VrOG7WRyD5DWQNjjaVxk4slszksmC/preview"
-                    ]
-                },
-                {
-                    name: "isaac harris-holt",
-                    description: "personal branding",
-                    videos: [
-                        "https://drive.google.com/file/d/1PWkz04Dvrq_SXJbIWwg8n2-pISV0orHW/preview"
-                    ]
-                },
-                {
-                    name: "tao clean",
-                    description: "product marketing",
-                    videos: [
-                        "https://drive.google.com/file/d/Rs1VWrxJ/preview",
-                        "https://drive.google.com/file/d/z2VTTO94/preview"
-                    ]
-                },
-                {
-                    name: "vitauthority",
-                    description: "health content",
-                    videos: [
-                        "https://drive.google.com/file/d/k10NFc6h/preview"
-                    ]
-                },
-                {
-                    name: "switch research",
-                    description: "research presentation",
-                    videos: [
-                        "https://drive.google.com/file/d/lGP25E00/preview"
-                    ]
-                },
-                {
-                    name: "ethical pap",
-                    description: "social content",
-                    videos: [
-                        "https://www.youtube.com/embed/gZIrwkE3cks",
-                        "https://www.youtube.com/embed/gMQYCFOoZOk"
-                    ]
-                },
-                {
-                    name: "courtroom consequences",
-                    description: "legal content",
-                    videos: [
-                        "https://drive.google.com/file/d/1hu-Q3QhCy38YRDP-q3HbRXQLyji5bBHz/preview"
-                    ]
-                },
-                {
-                    name: "the roblox coach",
-                    description: "gaming content",
-                    videos: [
-                        "https://drive.google.com/file/d/1NVnJiuUTgjF2OaBPp7VXNPElsg9U89m9/preview"
-                    ]
-                },
-                {
-                    name: "mason",
-                    description: "brand content",
-                    videos: [
-                        "https://drive.google.com/file/d/1eDLUMOax5Cevb40quKTu_M2tDVJ_oUlj/preview",
-                        "https://drive.google.com/file/d/1WJn3vSwJArfG3HjiDln3TIA8BRDF2U4E/preview"
-                    ]
-                },
-                {
-                    name: "eplay studios",
-                    description: "gaming studio content",
-                    videos: [
-                        "https://www.youtube.com/embed/wdc9zlovHwM",
-                        "https://www.youtube.com/embed/yNVutab2tXQ"
-                    ]
-                },
-                {
-                    name: "web prodigies",
-                    description: "educational content",
-                    videos: [
-                        "https://www.youtube.com/embed/XkOXNlHJP6M",
-                        "https://www.youtube.com/embed/3R63m4sTpKo"
-                    ]
+        // Scroll animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
                 }
-            ];
-
-            // Generate brand cards
-            const brandsGrid = document.querySelector('.brands-grid');
+            });
+        };
+        
+        window.addEventListener('scroll', fadeInOnScroll);
+        window.addEventListener('load', fadeInOnScroll);
+        
+        // FAQ accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
             
-            brands.forEach(brand => {
-                const brandCard = document.createElement('div');
-                brandCard.className = 'brand-card';
-                brandCard.innerHTML = `
-                    <div class="brand-name">${brand.name}</div>
-                `;
-                
-                brandCard.addEventListener('click', () => openModal(brand));
-                brandCard.addEventListener('mouseenter', () => {
-                    brandCard.style.cursor = "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 32 32\"><circle cx=\"16\" cy=\"16\" r=\"10\" fill=\"none\" stroke=\"%2300f0ff\" stroke-width=\"2\"/></svg>'), auto";
-                });
-                brandsGrid.appendChild(brandCard);
-            });
-
-            // Modal functionality
-            const modal = document.getElementById('videoModal');
-            const closeModal = document.querySelector('.close-modal');
-            const modalBrandTitle = document.getElementById('modalBrandTitle');
-            const modalBrandDesc = document.getElementById('modalBrandDesc');
-            const videosContainer = document.getElementById('videosContainer');
-
-            function openModal(brand) {
-                modalBrandTitle.textContent = brand.name;
-                modalBrandDesc.textContent = brand.description;
-                videosContainer.innerHTML = '';
-                
-                brand.videos.forEach(videoUrl => {
-                    const videoWrapper = document.createElement('div');
-                    videoWrapper.className = 'video-wrapper';
-                    videoWrapper.innerHTML = `
-                        <iframe src="${videoUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    `;
-                    videosContainer.appendChild(videoWrapper);
-                });
-                
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            }
-
-            closeModal.addEventListener('click', () => {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            });
-
-            window.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-            });
-
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth'
-                        });
+            question.addEventListener('click', () => {
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
                     }
                 });
+                
+                // Toggle current item
+                item.classList.toggle('active');
             });
         });
+        
+        // Modal functionality
+        const modal = document.querySelector('.modal');
+        const modalClose = document.querySelector('.modal-close');
+        const modalIframe = document.getElementById('modal-iframe');
+        const videoCards = document.querySelectorAll('.video-card');
+        
+        // Open modal with video
+        videoCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                // Don't open if clicking on play icon or title
+                if (e.target.closest('.play-icon') || e.target.closest('.video-title')) {
+                    return;
+                }
+                
+                const iframe = card.querySelector('iframe');
+                if (iframe) {
+                    modalIframe.src = iframe.src;
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+        
+        // Close modal
+        modalClose.addEventListener('click', () => {
+            modal.classList.remove('active');
+            modalIframe.src = '';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                modalIframe.src = '';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Mobile menu toggle (would be implemented fully in a real project)
+        // This is a placeholder for mobile responsiveness
     </script>
 </body>
 </html>
